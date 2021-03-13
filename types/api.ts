@@ -1,4 +1,3 @@
-// リスト形式のレスポンス用
 export type ListContentsResponse<T> = {
   contents: T[];
   totalCount: number;
@@ -6,7 +5,6 @@ export type ListContentsResponse<T> = {
   limit: number;
 };
 
-// オブジェクト形式のレスポンス用
 export type ContentResponse<T> = {
   id: string;
   createdAt: string;
@@ -15,7 +13,6 @@ export type ContentResponse<T> = {
   revisedAt: string;
 } & T;
 
-// リスト形式のクエリ用
 // https://document.microcms.io/content-api/get-list-contents
 export type GetListContentsQuery = {
   draftKey?: string;
@@ -28,7 +25,6 @@ export type GetListContentsQuery = {
   depth?: number;
 };
 
-// オブジェクト形式のクエリ用
 // https://document.microcms.io/content-api/get-content
 export type GetContentQuery = {
   draftKey?: string;

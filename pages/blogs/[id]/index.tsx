@@ -1,3 +1,24 @@
+import React from "react";
+
+import {
+  NextPage,
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  GetStaticProps,
+} from "next";
+import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
+
+import { BlogResponse } from "../../../types/blog";
+import { client } from "../../../utils/api";
+import { toStringId } from "../../../utils/toStringId";
+
+type StaticProps = {
+  blog: BlogResponse;
+  draftKey?: string;
+};
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
 const Page: NextPage<PageProps> = (props) => {
   const { blog, draftKey } = props;
   const router = useRouter();
@@ -16,7 +37,32 @@ const Page: NextPage<PageProps> = (props) => {
           </Link>
         </div>
       )}
-      {/* 省略 */}
+      <nav>
+        <Link href="/">Home</Link>
+      </nav>
+      <main>
+        <header>
+          <h1>{blog.title}</h1>
+          <ul>
+            <li>publishedAt: {blog.publishedAt}</li>
+            {blog.tags && blog.tags.length > 0 && (
+              <li>
+                tag:
+                <ul>
+                  {blog.tags.map((tag) => (
+                    <li key={tag.id}>
+                      <Link href={`/tags/${tag.id}`}>{tag.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            )}
+          </ul>
+        </header>
+        {blog.body && (
+          <article dangerouslySetInnerHTML={{ __html: blog.body }} />
+        )}
+      </main>
     </>
   );
 };
