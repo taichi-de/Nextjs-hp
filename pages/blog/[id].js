@@ -1,15 +1,21 @@
+import Layout from "../../components/Layout";
+
 export default function BlogId({ blog }) {
   return (
-    <main className="main">
-      <h1 className="title">{blog.title}</h1>
-      <p className="publisedAt">{blog.publishedAt}</p>
-      <p className="category">{blog.category && `${blog.category.name}`}</p>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.body}`,
-        }}
-      />
-    </main>
+    <Layout title="BlogId">
+      <div className="flex-col items-center justify-center font-mono text-gray-200">
+        <main className="p-2 my-4">
+          <h1 className="text-md">{blog.title}</h1>
+          <p className="my-2">{blog.publishedAt}</p>
+          <p>{blog.category && `${blog.category.name}`}</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `${blog.body}`,
+            }}
+          />
+        </main>
+      </div>
+    </Layout>
   );
 }
 
