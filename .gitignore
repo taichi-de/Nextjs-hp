@@ -11,15 +11,18 @@
 # next.js
 /.next/
 /out/
+public/sitemap.xml
+.vercel
 
 # production
 /build
-
+*.xml
 # misc
 .DS_Store
 *.pem
 
 # debug
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
